@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using StudentPortelWeb.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ApplicationDBContext>(Options =>
+Options.UseSqlServer(builder.Configuration.GetConnectionString("StudentPortel")));
 
 var app = builder.Build();
 
